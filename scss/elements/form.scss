@@ -1,0 +1,76 @@
+@import '../global/variables';
+
+.main-page {
+    .container {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+
+        main {
+            .login-form,
+            .register-form,
+            .add-twit-form,
+            .edit-twit-form {
+                form {
+                    text-align: center;
+
+                    textarea {
+                        width: 450px;
+                        height: 200px;
+                        padding: $gutterS;
+                        margin-bottom: $gutterM;
+                    }
+
+                    input {
+                        height: 30px;
+                        margin-bottom: $gutterS;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    #password {
+                        margin-bottom: $gutter;
+                    }
+                    
+                    button {
+                        font-family: "Space Mono", serif;
+                        background-color: $theme;
+                        color: $white;
+                        border: none;
+                        font-size: 15px;
+                        font-weight: bold;
+                        width: 100px;
+                        height: 40px;
+                        border-radius: 5px;
+                    }
+                }
+            }
+
+            .add-twit-form, .edit-twit-form {
+                form {
+                    input {
+                        width: 450px;
+                        height: auto !important;
+                        padding: $gutterS;
+                    }
+                }
+            }
+
+            .register-link, .login-link {
+                margin-top: 50px;
+                text-align: center;
+
+                p {
+                    font-size: 18px;
+
+                    a {
+                        color: $theme;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}

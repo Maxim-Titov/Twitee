@@ -1,0 +1,286 @@
+header {
+  background-color: #1f85da;
+}
+header .container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0 15px 0;
+}
+header .container .logo img {
+  width: 50px;
+}
+header .container .menu nav ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+header .container .menu nav ul li {
+  list-style: none;
+}
+header .container .menu nav ul li {
+  margin-right: 30px;
+  padding-bottom: 8px;
+}
+header .container .menu nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+header .container .menu nav ul li:last-child {
+  margin-right: 0;
+}
+header .container .menu nav ul li:hover {
+  padding-bottom: 0;
+}
+header .container .menu nav ul li:hover a .selected {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+header .container .menu nav ul li:hover a .selected span {
+  background-color: #fff;
+  height: 2px;
+  width: 45%;
+}
+header .container .login-form p, header .container .add-twit-form p {
+  font-weight: bold;
+  color: #fff;
+}
+header .container .login-form form button, header .container .add-twit-form form button {
+  background-color: #fff;
+  border: none;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+header .container .login-form form button:hover, header .container .add-twit-form form button:hover {
+  background-color: #b4b4b4;
+}
+
+.main-page .container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.main-page .container main {
+  position: relative;
+  padding: 50px 0;
+  width: 1220px;
+}
+.main-page .container main .main-title {
+  text-align: center;
+  margin-bottom: 50px;
+  color: #1f85da;
+  font-size: 50px;
+  font-weight: bold;
+}
+.main-page .container main .filter {
+  position: absolute;
+  right: 0;
+}
+.main-page .container main .filter select {
+  font-family: "Space Mono", serif;
+  background-color: #1f85da;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  width: 125px;
+  height: 50px;
+  text-align: center;
+}
+.main-page .container main .filter select option {
+  background-color: #fff;
+  color: #000;
+}
+.main-page .container main .twit {
+  margin: 0 auto;
+  border: 3px solid #1f85da;
+  border-radius: 10px;
+  width: 75%;
+  background-color: #1f85da;
+  margin-bottom: 30px;
+}
+.main-page .container main .twit-title, .main-page .container main .twit-content {
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.main-page .container main .twit-title {
+  margin-bottom: 3px;
+}
+.main-page .container main .twit-about {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  color: #fff;
+}
+.main-page .container main .twit-about .user {
+  width: auto;
+}
+.main-page .container main .twit-about .user .name {
+  font-weight: bold;
+  font-size: 18px;
+}
+.main-page .container main .twit-about .user .user-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+.main-page .container main .twit-about .user .user-logo img {
+  width: 35px;
+  transform: translate(20%, 25%);
+}
+.main-page .container main .twit-about .date {
+  font-weight: bold;
+  font-size: 18px;
+}
+.main-page .container main .twit-actions {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -300%);
+}
+.main-page .container main .twit-actions a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+.main-page .container main .twit-actions a:hover {
+  color: #b4b4b4;
+}
+
+.main-page .container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.main-page .container main .login-form form,
+.main-page .container main .register-form form,
+.main-page .container main .add-twit-form form,
+.main-page .container main .edit-twit-form form {
+  text-align: center;
+}
+.main-page .container main .login-form form textarea,
+.main-page .container main .register-form form textarea,
+.main-page .container main .add-twit-form form textarea,
+.main-page .container main .edit-twit-form form textarea {
+  width: 450px;
+  height: 200px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.main-page .container main .login-form form input,
+.main-page .container main .register-form form input,
+.main-page .container main .add-twit-form form input,
+.main-page .container main .edit-twit-form form input {
+  height: 30px;
+  margin-bottom: 10px;
+}
+.main-page .container main .login-form form input:last-child,
+.main-page .container main .register-form form input:last-child,
+.main-page .container main .add-twit-form form input:last-child,
+.main-page .container main .edit-twit-form form input:last-child {
+  margin-bottom: 0;
+}
+.main-page .container main .login-form form #password,
+.main-page .container main .register-form form #password,
+.main-page .container main .add-twit-form form #password,
+.main-page .container main .edit-twit-form form #password {
+  margin-bottom: 30px;
+}
+.main-page .container main .login-form form button,
+.main-page .container main .register-form form button,
+.main-page .container main .add-twit-form form button,
+.main-page .container main .edit-twit-form form button {
+  font-family: "Space Mono", serif;
+  background-color: #1f85da;
+  color: #fff;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+}
+.main-page .container main .add-twit-form form input, .main-page .container main .edit-twit-form form input {
+  width: 450px;
+  height: auto !important;
+  padding: 10px;
+}
+.main-page .container main .register-link, .main-page .container main .login-link {
+  margin-top: 50px;
+  text-align: center;
+}
+.main-page .container main .register-link p, .main-page .container main .login-link p {
+  font-size: 18px;
+}
+.main-page .container main .register-link p a, .main-page .container main .login-link p a {
+  color: #1f85da;
+  text-decoration: none;
+}
+
+footer {
+  background-color: #1f85da;
+}
+footer .container {
+  margin: 0 auto;
+  padding: 50px 0 45px 0;
+}
+footer .container p {
+  text-align: center;
+  color: #fff;
+  font-size: 18px;
+}
+footer .container p a {
+  color: #fff;
+}
+footer .container p a:hover {
+  color: #b4b4b4;
+}
+
+body {
+  font-family: "Space Mono", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.wrapper .main-page {
+  flex: 1 1 auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1220px;
+}
+
+p {
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: 0;
+}

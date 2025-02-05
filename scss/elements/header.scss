@@ -1,0 +1,88 @@
+@import '../global/mixin';
+@import '../global/variables';
+
+header {
+    background-color: $theme;
+
+    .container {
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0 15px 0;
+
+        .logo {
+            img {
+                width: 50px;
+            }
+        }
+
+        .menu {
+            nav {
+                ul {
+                    @include li-reset;
+                    
+                    display: flex;
+
+                    li {
+                        margin-right: $gutter;
+                        padding-bottom: 8px;
+
+                        a {
+                            text-decoration: none;
+                            color: $white;
+                            font-weight: bold;
+                            text-transform: uppercase;
+                        }
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+
+                        &:hover {
+                            padding-bottom: 0;
+
+                            a {
+                                .selected {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    margin-top: 5px;
+                            
+                                    span {
+                                        background-color: $white;
+                                        height: 2px;
+                                        width: 45%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .login-form, .add-twit-form {
+            p {
+                font-weight: bold;
+                color: $white;
+            }
+
+            form {
+                button {
+                    background-color: $white;
+                    border: none;
+                    width: 75px;
+                    height: 75px;
+                    border-radius: 50%;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $gray;
+                    }
+                }
+            }
+        }
+    }
+}
