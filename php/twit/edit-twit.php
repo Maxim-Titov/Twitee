@@ -1,11 +1,7 @@
 <?php
 session_start();
 
-// Підключення до БД
-$host = 'localhost';
-$dbname = 'user_database';
-$username = 'maxim';
-$password = 'admin';
+require '../config/db.php';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
@@ -14,14 +10,12 @@ try {
     die("Помилка підключення до бази даних: " . $e->getMessage());
 }
 
-// Перевіряємо, чи переданий twit_id
 if (!isset($_GET['twit_id'])) {
     die("Невірний запит.");
 }
 
 $twit_id = $_GET['twit_id'];
 
-// Отримуємо твіт для редагування
 $query = "SELECT title, content FROM twits WHERE twit_id = :twit_id";
 $stmt = $pdo->prepare($query);
 $stmt->bindParam(':twit_id', $twit_id, PDO::PARAM_INT);
@@ -32,7 +26,6 @@ if (!$twit) {
     die("Твіт не знайдено.");
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,10 +76,8 @@ if (!$twit) {
                     </nav>
                 </div>
 
-                <div class="login-form" style="display: flex; align-items: center;">
+                <div class="header-login-form" style="display: flex; align-items: center;">
                     <?php
-                        session_start();
-
                         if (isset($_SESSION['username'])) {
                             echo '<p style="margin-right: 15px;">' . htmlspecialchars($_SESSION['username']) . '</p>';
 
@@ -99,6 +90,40 @@ if (!$twit) {
                         }
                     ?>
                 </div>
+
+                <div class="hamburger-menu">
+					<input id="menu__toggle" type="checkbox"/>
+					<div class="button">
+						<label class="menu__btn" for="menu__toggle">
+							<span></span>
+						</label>
+					</div>
+					<div class="menu__box">
+                        <div class="burger-login-form" style="display: flex; align-items: center;">
+                            <?php
+                                if (isset($_SESSION['username'])) {
+                                    echo '<div class="logout" style="margin-right: 15px;">';
+                                    echo '<form action="../auth/logout.php" method="post">';
+                                    echo '<button type="submit">Logout</button>';
+                                    echo '</form>';
+                                    echo '</div>';
+
+                                    echo '<p>' . htmlspecialchars($_SESSION['username']) . '</p>';
+                                }
+                            ?>
+                        </div>
+
+                        <ul>
+                            <li>
+                                <a class="menu__item" href="../../index.php">Twits</a>
+                            </li>
+
+                            <li>
+                                <a class="menu__item" href="my-twits.php">My twits</a>
+                            </li>
+                        </ul>
+					</div>
+				</div>
             </div>
         </header>
 
@@ -124,7 +149,7 @@ if (!$twit) {
 
         <footer>
             <div class="container">
-                <p>Login into your account</p>
+                <p>Edit your twit</p>
             </div>
         </footer>
     </div>

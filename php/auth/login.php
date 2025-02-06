@@ -1,10 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "maxim";
-$password = "admin";
-$dbname = "user_database";
+require '../config/db.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($host, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -21,14 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->fetch();
 
     if (password_verify($password, $hashed_password)) {
-        // Початок сесії
         session_start();
 
-        // Збереження username та user_id у сесії
         $_SESSION['username'] = $username;
         $_SESSION['user_id'] = $user_id;
 
-        // Перенаправлення на індексну сторінку
         header("Location: ../../index.php");
         exit;
     } else {

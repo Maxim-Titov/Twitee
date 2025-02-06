@@ -1,10 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "maxim";
-$password = "admin";
-$dbname = "user_database";
+require '../config/db.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($host, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -18,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ss", $username, $password);
 
     if ($stmt->execute()) {
-        echo "Registration successful! You can now <a href='login.php'>login</a>.";
+        echo "Registration successful! You can now <a href='../../html/auth/login.html'>login</a>.";
     } else {
         echo "Error: " . $stmt->error;
     }

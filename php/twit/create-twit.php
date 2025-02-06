@@ -1,13 +1,8 @@
 <?php
 session_start();
 
-// Параметри підключення до бази даних
-$host = 'localhost';
-$dbname = 'user_database';
-$username = 'maxim';
-$password = 'admin';
+require '../config/db.php';
 
-// Підключення до бази даних
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -28,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Title and content cannot be empty.");
     }
 
-    $stmt = $pdo->prepare("INSERT INTO twits (title, content, created_at, user_id) VALUES (:title, :content, NOW(), :user_id)");
+    $stmt = $pdo->prepare("INSERT INTO twits (title, content, created_at, date, user_id) VALUES (:title, :content, NOW(), NOW(), :user_id)");
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':content', $content, PDO::PARAM_STR);
     $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);

@@ -47,7 +47,7 @@
                     </nav>
                 </div>
 
-                <div class="add-twit-form" style="display: flex; align-items: center;">
+                <div class="header-add-twit-form" style="display: flex; align-items: center;">
                     <form action="add-twit.php" style="margin-right: 15px;">
                         <button>Add twit</button>
                     </form>
@@ -65,6 +65,47 @@
                         }
                     ?>
                 </div>
+
+                <div class="hamburger-menu">
+					<input id="menu__toggle" type="checkbox"/>
+					<div class="button">
+						<label class="menu__btn" for="menu__toggle">
+							<span></span>
+						</label>
+					</div>
+					<div class="menu__box">
+                        <div class="burger-login-form" style="display: flex; align-items: center;">
+                            <?php
+                                if (isset($_SESSION['username'])) {
+                                    echo '<div class="logout" style="margin-right: 15px;">';
+                                    echo '<form action="../auth/logout.php" method="post">';
+                                    echo '<button type="submit">Logout</button>';
+                                    echo '</form>';
+                                    echo '</div>';
+
+                                    echo '<p>' . htmlspecialchars($_SESSION['username']) . '</p>';
+
+                                }
+                            ?>
+                        </div>
+
+                        <ul>
+                            <li>
+                                <a class="menu__item" href="../../index.php">Twits</a>
+                            </li>
+
+                            <li style="<?php if (!isset($_SESSION['username'])) { echo 'display: none;'; } ?>">
+                                <a class="menu__item" href="">My twits</a>
+                            </li>
+                        </ul>
+
+                        <div class="burger-add-twit-form" style="display: flex; align-items: center;">
+                            <form action="add-twit.php">
+                                <button>Add twit</button>
+                            </form>
+                        </div>
+					</div>
+				</div>
             </div>
         </header>
 
@@ -74,15 +115,8 @@
                     <h1 class="main-title">- My twits -</h1>
 
                     <?php
-                        session_start();
+                        require '../config/db.php';
 
-                        // Параметри підключення до бази даних
-                        $host = 'localhost';
-                        $dbname = 'user_database';
-                        $username = 'maxim';
-                        $password = 'admin';
-
-                        // Підключення до бази даних
                         try {
                             $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
                             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -98,6 +132,7 @@
                                 twits.title,
                                 twits.content, 
                                 twits.created_at, 
+                                twits.date,
                                 users.username 
                             FROM 
                                 twits 
@@ -117,7 +152,6 @@
 
                         $twits = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                        // Виведення твітів
                         foreach ($twits as $twit) {
                             echo '<div class="twit">';
                             echo '<h2 class="twit-title">' . htmlspecialchars($twit['title']) . '</h2>';
@@ -130,11 +164,10 @@
                             echo '<p class="name">' . htmlspecialchars($twit['username']) . '</p>';
                             echo '</div>';
                             echo '<div class="date">';
-                            echo '<p>' . htmlspecialchars($twit['created_at']) . '</p>';
+                            echo '<p>' . htmlspecialchars($twit['date']) . '</p>';
                             echo '</div>';
                             echo '</div>'; // .twit-about
 
-                            // Додаємо кнопку "Edit", яка веде на edit-twit.php з параметром twit_id
                             echo '<div class="twit-actions">';
                             echo '<a href="edit-twit.php?twit_id=' . $twit['twit_id'] . '" class="edit-button">Edit</a>';
                             echo '</div>'; // .twit-actions

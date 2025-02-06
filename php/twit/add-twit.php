@@ -47,7 +47,7 @@
                     </nav>
                 </div>
 
-                <div class="login-form" style="display: flex; align-items: center;">
+                <div class="header-login-form" style="display: flex; align-items: center;">
                     <?php
                         session_start();
 
@@ -63,6 +63,40 @@
                         }
                     ?>
                 </div>
+
+                <div class="hamburger-menu">
+					<input id="menu__toggle" type="checkbox"/>
+					<div class="button">
+						<label class="menu__btn" for="menu__toggle">
+							<span></span>
+						</label>
+					</div>
+					<div class="menu__box">
+                        <div class="burger-login-form" style="display: flex; align-items: center;">
+                            <?php
+                                if (isset($_SESSION['username'])) {
+                                    echo '<div class="logout" style="margin-right: 15px;">';
+                                    echo '<form action="../auth/logout.php" method="post">';
+                                    echo '<button type="submit">Logout</button>';
+                                    echo '</form>';
+                                    echo '</div>';
+
+                                    echo '<p>' . htmlspecialchars($_SESSION['username']) . '</p>';
+                                }
+                            ?>
+                        </div>
+
+                        <ul>
+                            <li>
+                                <a class="menu__item" href="../../index.php">Twits</a>
+                            </li>
+
+                            <li>
+                                <a class="menu__item" href="my-twits.php">My twits</a>
+                            </li>
+                        </ul>
+					</div>
+				</div>
             </div>
         </header>
 

@@ -74,3 +74,22 @@
         }
     }
 }
+
+/*------------------------------------------------------------------*/
+
+@media(max-width: 425px) {
+    .main-page {
+        .container {
+            main {
+                .login-form,
+                .register-form,
+                .add-twit-form,
+                .edit-twit-form {
+                    input, textarea {
+                        width: 280px !important;
+                    }
+                }
+            }
+        }
+    }
+}
