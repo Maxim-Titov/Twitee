@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,8 +53,6 @@
 
                 <div class="header-login-form" style="display: flex; align-items: center;">
                     <?php
-                        session_start();
-
                         if (isset($_SESSION['username'])) {
                             echo '<p style="margin-right: 15px;">' . htmlspecialchars($_SESSION['username']) . '</p>';
 
