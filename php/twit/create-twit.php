@@ -19,10 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $content = trim($_POST['content']);
     $user_id = $_SESSION['user_id'];
 
-    if (empty($title) || empty($content)) {
-        die("Title and content cannot be empty.");
-    }
-
     $stmt = $pdo->prepare("INSERT INTO twits (title, content, created_at, date, user_id) VALUES (:title, :content, NOW(), NOW(), :user_id)");
     $stmt->bindParam(':title', $title, PDO::PARAM_STR);
     $stmt->bindParam(':content', $content, PDO::PARAM_STR);

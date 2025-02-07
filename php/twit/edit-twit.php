@@ -140,7 +140,7 @@ if (!$twit) {
 
                             <textarea name="content" required><?= htmlspecialchars($twit['content']) ?></textarea> <br/>
 
-                            <button type="submit">Save</button>
+                            <button id="edit-twit-submit" type="submit">Save</button>
                         </form>
                     </div>
                 </main>
@@ -153,5 +153,7 @@ if (!$twit) {
             </div>
         </footer>
     </div>
+
+    <script type="text/javascript" src="../../dist/edit-twit-res.bundle.js"></script>
 </body>
 </html>

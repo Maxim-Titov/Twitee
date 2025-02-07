@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    die("Помилка: Користувач не авторизований");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,9 +60,7 @@
                         <button>Add twit</button>
                     </form>
 
-                    <?php
-                        session_start();
-                        
+                    <?php                        
                         if (isset($_SESSION['username'])) {
                             echo '<div class="logout">';
                             echo '<form action="../auth/logout.php" method="post">';

@@ -1,3 +1,7 @@
+<?php
+session_start(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +37,7 @@
                                 </a>
                             </li>
 
-                            <li style="<?php session_start(); if (!isset($_SESSION['username'])) { echo 'display: none;'; } ?>">
+                            <li style="<?php if (!isset($_SESSION['username'])) { echo 'display: none;'; } ?>">
                                 <a href="php/twit/my-twits.php">
                                     My twits
                                     <div class="selected">
@@ -161,7 +165,7 @@
 
         <footer>
             <div class="container">
-                <p>Add your own <?php session_start(); if (!isset($_SESSION['username'])) { echo '<a href="html/auth/login.html">twit</a>'; } else { echo '<a href="php/twit/add-twit.php">twit</a></p>'; } ?>
+                <p>Add your own <?php if (!isset($_SESSION['username'])) { echo '<a href="html/auth/login.html">twit</a>'; } else { echo '<a href="php/twit/add-twit.php">twit</a></p>'; } ?>
             </div>
         </footer>
     </div>

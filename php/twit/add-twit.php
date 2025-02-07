@@ -107,11 +107,11 @@
 
                     <div class="add-twit-form">
                         <form action="create-twit.php" method="POST">
-                            <input type="text" name="title" id="title" placeholder="Title" require> <br/>
+                            <input type="text" name="title" id="title" placeholder="Title"> <br/>
 
-                            <textarea id="content" name="content" placeholder="Content" require></textarea> <br/>
+                            <textarea id="content" name="content" placeholder="Content"></textarea> <br/>
 
-                            <button type="submit">Add twit</button>
+                            <button id="add-twit-submit" type="submit">Add twit</button>
                         </form>
                     </div>
                 </main>
@@ -120,9 +120,11 @@
 
         <footer>
             <div class="container">
-                <p>Login into your account</p>
+                <p>Add your twit</p>
             </div>
         </footer>
     </div>
+
+    <script type="text/javascript" src="../../dist/add-twit-res.bundle.js"></script>
 </body>
 </html>

@@ -1,0 +1,1 @@
+document.getElementById("edit-twit-submit").addEventListener("click",(function(e){var t=document.querySelectorAll("input, textarea"),l=!0;t.forEach((function(e){""===e.value.trim()?(l=!1,e.style.border="2px solid red"):e.style.border=""})),l?alert("Twit was changed successfully!"):(e.preventDefault(),alert("Please fill in all fields!"))}));
