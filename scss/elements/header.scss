@@ -85,6 +85,18 @@ header {
             }
         }
 
+        .header-login-form, .header-add-twit-form {
+            p {
+                margin-right: 15px;
+            }
+        }
+
+        .burger-login-form, .burger-add-twit-form {
+            form {
+                margin-right: 15px;
+            }
+        }
+
         .hamburger-menu {
             display: none;
         }

@@ -1,9 +1,6 @@
 <?php
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    die("Помилка: Користувач не авторизований");
-}
+require '../config/init.php';
+require '../auth/auth.php';
 ?>
 
 <!DOCTYPE html>
@@ -60,16 +57,7 @@ if (!isset($_SESSION['user_id'])) {
                         <button>Add twit</button>
                     </form>
 
-                    <?php                        
-                        if (isset($_SESSION['username'])) {
-                            echo '<div class="logout">';
-                            echo '<form action="../auth/logout.php" method="post">';
-                            echo '<button type="submit">Logout</button>';
-                            echo '</form>';
-                            echo '</div>';
-
-                        }
-                    ?>
+                    <?php displayAuthButtons(); ?>
                 </div>
 
                 <div class="hamburger-menu">
@@ -81,17 +69,9 @@ if (!isset($_SESSION['user_id'])) {
 					</div>
 					<div class="menu__box">
                         <div class="burger-login-form" style="display: flex; align-items: center;">
-                            <?php
-                                if (isset($_SESSION['username'])) {
-                                    echo '<div class="logout" style="margin-right: 15px;">';
-                                    echo '<form action="../auth/logout.php" method="post">';
-                                    echo '<button type="submit">Logout</button>';
-                                    echo '</form>';
-                                    echo '</div>';
-
-                                    echo '<p>' . htmlspecialchars($_SESSION['username']) . '</p>';
-
-                                }
+                            <?php 
+                                displayAuthButtons();
+                                displayUserName();
                             ?>
                         </div>
 
@@ -120,67 +100,7 @@ if (!isset($_SESSION['user_id'])) {
                 <main>
                     <h1 class="main-title">- My twits -</h1>
 
-                    <?php
-                        require '../config/db.php';
-
-                        try {
-                            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        } catch (PDOException $e) {
-                            die("Помилка підключення до бази даних: " . $e->getMessage());
-                        }
-
-                        $user_id = $_SESSION['user_id'];
-
-                        $query = "
-                            SELECT 
-                                twits.twit_id,
-                                twits.title,
-                                twits.content, 
-                                twits.created_at, 
-                                twits.date,
-                                users.username 
-                            FROM 
-                                twits 
-                            INNER JOIN 
-                                users 
-                            ON 
-                                twits.user_id = users.user_id 
-                            WHERE 
-                                twits.user_id = :user_id
-                            ORDER BY 
-                                twits.created_at DESC
-                        ";
-
-                        $stmt = $pdo->prepare($query);
-                        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-                        $stmt->execute();
-
-                        $twits = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                        foreach ($twits as $twit) {
-                            echo '<div class="twit">';
-                            echo '<h2 class="twit-title">' . htmlspecialchars($twit['title']) . '</h2>';
-                            echo '<p class="twit-content">' . htmlspecialchars($twit['content']) . '</p>';
-                            echo '<div class="twit-about">';
-                            echo '<div class="user">';
-                            echo '<div class="user-logo">';
-                            echo '<img src="../../images/user.png" alt="user-logo">';
-                            echo '</div>';
-                            echo '<p class="name">' . htmlspecialchars($twit['username']) . '</p>';
-                            echo '</div>';
-                            echo '<div class="date">';
-                            echo '<p>' . htmlspecialchars($twit['date']) . '</p>';
-                            echo '</div>';
-                            echo '</div>'; // .twit-about
-
-                            echo '<div class="twit-actions">';
-                            echo '<a href="edit-twit.php?twit_id=' . $twit['twit_id'] . '" class="edit-button">Edit</a>';
-                            echo '</div>'; // .twit-actions
-
-                            echo '</div>'; // .twit
-                        }
-                    ?>
+                    <?php require 'user-twits.php'; ?>
                 </main>
             </div>
         </div>

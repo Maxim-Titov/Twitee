@@ -1,30 +1,7 @@
 <?php
-session_start();
-
-require '../config/db.php';
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Помилка підключення до бази даних: " . $e->getMessage());
-}
-
-if (!isset($_GET['twit_id'])) {
-    die("Невірний запит.");
-}
-
-$twit_id = $_GET['twit_id'];
-
-$query = "SELECT title, content FROM twits WHERE twit_id = :twit_id";
-$stmt = $pdo->prepare($query);
-$stmt->bindParam(':twit_id', $twit_id, PDO::PARAM_INT);
-$stmt->execute();
-$twit = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$twit) {
-    die("Твіт не знайдено.");
-}
+require '../config/init.php';
+require '../auth/auth.php';
+require 'edit-twit-handler.php';
 ?>
 
 <!DOCTYPE html>
@@ -77,17 +54,9 @@ if (!$twit) {
                 </div>
 
                 <div class="header-login-form" style="display: flex; align-items: center;">
-                    <?php
-                        if (isset($_SESSION['username'])) {
-                            echo '<p style="margin-right: 15px;">' . htmlspecialchars($_SESSION['username']) . '</p>';
-
-                            echo '<div class="logout">';
-                            echo '<form action="../auth/logout.php" method="post">';
-                            echo '<button type="submit">Logout</button>';
-                            echo '</form>';
-                            echo '</div>';
-
-                        }
+                    <?php 
+                        displayUserName();
+                        displayAuthButtons();
                     ?>
                 </div>
 
@@ -100,16 +69,9 @@ if (!$twit) {
 					</div>
 					<div class="menu__box">
                         <div class="burger-login-form" style="display: flex; align-items: center;">
-                            <?php
-                                if (isset($_SESSION['username'])) {
-                                    echo '<div class="logout" style="margin-right: 15px;">';
-                                    echo '<form action="../auth/logout.php" method="post">';
-                                    echo '<button type="submit">Logout</button>';
-                                    echo '</form>';
-                                    echo '</div>';
-
-                                    echo '<p>' . htmlspecialchars($_SESSION['username']) . '</p>';
-                                }
+                            <?php 
+                                displayAuthButtons();
+                                displayUserName();
                             ?>
                         </div>
 

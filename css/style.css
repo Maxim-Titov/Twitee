@@ -62,6 +62,12 @@ header .container .header-login-form form button, header .container .header-add-
 header .container .header-login-form form button:hover, header .container .header-add-twit-form form button:hover, header .container .burger-login-form form button:hover, header .container .burger-add-twit-form form button:hover {
   background-color: #b4b4b4;
 }
+header .container .header-login-form p, header .container .header-add-twit-form p {
+  margin-right: 15px;
+}
+header .container .burger-login-form form, header .container .burger-add-twit-form form {
+  margin-right: 15px;
+}
 header .container .hamburger-menu {
   display: none;
 }

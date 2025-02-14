@@ -1,5 +1,6 @@
 <?php
-session_start();
+require '../config/init.php';
+require '../auth/auth.php';
 ?>
 
 <!DOCTYPE html>
@@ -52,17 +53,9 @@ session_start();
                 </div>
 
                 <div class="header-login-form" style="display: flex; align-items: center;">
-                    <?php
-                        if (isset($_SESSION['username'])) {
-                            echo '<p style="margin-right: 15px;">' . htmlspecialchars($_SESSION['username']) . '</p>';
-
-                            echo '<div class="logout">';
-                            echo '<form action="../auth/logout.php" method="post">';
-                            echo '<button type="submit">Logout</button>';
-                            echo '</form>';
-                            echo '</div>';
-
-                        }
+                    <?php 
+                        displayUserName();
+                        displayAuthButtons();
                     ?>
                 </div>
 
@@ -75,16 +68,9 @@ session_start();
 					</div>
 					<div class="menu__box">
                         <div class="burger-login-form" style="display: flex; align-items: center;">
-                            <?php
-                                if (isset($_SESSION['username'])) {
-                                    echo '<div class="logout" style="margin-right: 15px;">';
-                                    echo '<form action="../auth/logout.php" method="post">';
-                                    echo '<button type="submit">Logout</button>';
-                                    echo '</form>';
-                                    echo '</div>';
-
-                                    echo '<p>' . htmlspecialchars($_SESSION['username']) . '</p>';
-                                }
+                            <?php 
+                                displayAuthButtons();
+                                displayUserName();
                             ?>
                         </div>
 
